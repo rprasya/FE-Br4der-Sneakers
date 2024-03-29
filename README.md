@@ -1,8 +1,16 @@
-# React + Vite
+# BR4DER STORE
+ 
+Brader Store adalah sebuah website online shop yang dimana memfasilitasi kepada pencinta sneakers untuk mencari sneakers impian anda.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Selama project ini berlangsung terdiri dari 4 anggota dan dibagi berbagai divisi:
+1. Ghozy sebagai UI/UX Designer
+2. Rinaldi sebagai Front-End Engineer
+3. Farhan sebagai Back-End Engineer
+4. Fazril sebagai Fullstack Engineer
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Dalam Mendevelop Website ini kami menggunakan tools :
+1. UI/UX Designer : Figma
+2. Front-End Engineer : ReactJS, Tailwindcss
+3. Back-End Engineer : ExpressJS, Prisma, Postman, MySql
+4. Management Project : Google Sheets, Discord

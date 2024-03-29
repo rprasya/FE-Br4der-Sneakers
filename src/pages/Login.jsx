@@ -1,4 +1,4 @@
-import Logo from "../assets//Logo/logo_3.png";
+import Logo from "../assets/Logo/logo_3.png";
 import Footer from "../components/Footer";
 
 const Login = () => {

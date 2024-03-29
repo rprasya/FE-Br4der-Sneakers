@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
-import LogoHome from "../assets/Logo-Home.png";
+import LogoHome from "../assets/Logo/Logo-Home.png";
 import { IoMdSearch, IoMdCart } from "react-icons/io";
 import Home from "../pages/Home";
 import Product from "../pages/Product";

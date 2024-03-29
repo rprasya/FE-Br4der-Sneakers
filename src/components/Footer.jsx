@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LogoFooter from "../assets/logo_1.png";
+import LogoFooter from "../assets/Logo/logo_1.png";
 import Facebook from "../assets/Sosmed/icon_fb.png";
 import Instagram from "../assets/Sosmed/icon_ig.png";
 import Twitter from "../assets/Sosmed/icon_x.png";

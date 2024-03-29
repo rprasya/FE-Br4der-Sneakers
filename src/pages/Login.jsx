@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 const Login = () => {
   return (
     <>
-      <section className="flex justify-between items-center">
+      <section className="flex justify-between items-center mb-10">
         <div className="w-[700px] h-[497px] flex flex-col justify-center items-center">
           <img src={Logo} alt="Logo" className="w-[165px]" />
           <p className="text-center text-base tracking-wide font-semibold mt-6">

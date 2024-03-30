@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-col gap-4">
           <p className="font-semibold">Contact Us</p>
-          <p>(+62) 0884 8288 242</p>
+          <p>(+62) 884 8288 242</p>
           <p className="font-semibold">Follow Us</p>
           <ul className="flex gap-4">
             <li>

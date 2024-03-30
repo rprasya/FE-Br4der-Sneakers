@@ -1,7 +1,11 @@
+import { useState } from "react";
 import Logo from "../assets/Logo/logo_3.png";
 import Footer from "../components/Footer";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
     <>
       <section className="flex justify-between items-center mb-10">
@@ -39,12 +43,19 @@ const Login = () => {
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 id="password"
                 placeholder="Password"
                 className="bg-[#D9D9D9] border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#F80F00]"
                 required
               />
+              <button type="button" className="absolute top-[66%] right-[185px] transform -translate-y-1/2 focus:outline-none" onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? (
+                  <FaEyeSlash className="text-xl" />
+                  ) : (
+                  <FaEye className="text-xl" />
+                )}
+              </button>
             </div>
             {/* Password end */}
 

@@ -9,7 +9,7 @@ import Register from "../pages/Register";
 const Navbar = () => {
   return (
     <>
-      <nav className="px-7 py-5">
+      <nav className="px-7 py-5 shadow-lg">
         <ul className="flex justify-between items-center bg-white">
           <li>
             <Link to="/">

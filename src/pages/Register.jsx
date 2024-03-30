@@ -122,7 +122,7 @@ const Register = () => {
               type="submit"
               className="bg-[#F80F00] text-white rounded-full px-4 py-2 font-medium w-full hover:bg-[#C60C00]"
             >
-              LOGIN
+              Register
             </button>
           </form>
         </div>

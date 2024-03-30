@@ -61,7 +61,7 @@ const Login = () => {
 
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center">
-                <input type="checkbox" id="remember-me" className="mr-2" />
+                <input type="checkbox" id="remember-me" className="mt-1 mr-1" />
                 <label htmlFor="remember-me" className="text-sm font-medium">
                   Remember
                 </label>

@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
-import LogoHome from "../assets/Logo-Home.png";
+import LogoHome from "../assets/Logo/Logo-Home.png";
 import { IoMdSearch, IoMdCart } from "react-icons/io";
-import Home from "../pages/Home"
+import Home from "../pages/Home";
 import Product from "../pages/Product";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -9,7 +9,7 @@ import Register from "../pages/Register";
 const Navbar = () => {
   return (
     <>
-      <nav className="px-7 py-5">
+      <nav className="px-7 py-5 shadow-lg">
         <ul className="flex justify-between items-center bg-white">
           <li>
             <Link to="/">
@@ -41,12 +41,18 @@ const Navbar = () => {
               </span>
               <IoMdCart className="text-xl drop-shadow-md cursor-pointer" />
             </Link>
-            <Link to="/login" className="text-lg hover:underline hover:text-[#F80F00]">
-                <div>Login</div>
+            <Link
+              to="/login"
+              className="text-lg hover:underline hover:text-[#F80F00]"
+            >
+              <div>Login</div>
             </Link>
             <p className="text-[#F80F00] text-lg">|</p>
-            <Link to="/register" className="text-lg hover:underline hover:text-[#F80F00]">
-                <div>Register</div>
+            <Link
+              to="/register"
+              className="text-lg hover:underline hover:text-[#F80F00]"
+            >
+              <div>Register</div>
             </Link>
           </li>
           {/* cart, login, regist end */}

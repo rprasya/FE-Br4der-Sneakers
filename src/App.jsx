@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 const App = () => {
   return (
     <>
-      <div className="w-full min-h-screen ">
+      <div className="w-315 min-h-screen">
         <Navbar />        
       </div>
     </>

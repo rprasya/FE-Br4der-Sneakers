@@ -2,7 +2,7 @@
    <img src="https://cdn.pixabay.com/photo/2024/03/31/05/44/05-44-53-541_1280.jpg" width="400">
 </div>
  
-# About this Project
+## About this Project
 
 Brader Store adalah sebuah website online shop yang dimana memfasilitasi kepada pencinta sneakers untuk mencari sneakers impian anda.
 
@@ -20,6 +20,11 @@ Dalam Mendevelop Website ini kami menggunakan tools :
  <li>Front-End Engineer : ReactJS, Tailwindcss</li>
  <li>Back-End Engineer : ExpressJS, Prisma, Postman, MySql</li>
  <li>Management Project : Google Sheets, Discord</li>
+</ul>
+
+## Resouces
+<ul>
+   <li><a href="https://www.figma.com/files/project/216250499/Team-project?fuid=875519465711945336" target="_blank">Figma Design</a></li>
 </ul>
  
 

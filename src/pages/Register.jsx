@@ -2,9 +2,34 @@ import { useState } from "react";
 import Logo from "../assets/Logo/logo_3.png";
 import Footer from "../components/Footer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const data = {
+      name,
+      email,
+      password,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://br4der-api.up.railway.app/signup",
+        data
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log("SignUp Error:", error);
+    }
+  };
 
   return (
     <>
@@ -18,7 +43,10 @@ const Register = () => {
         </div>
         <div className="w-[700px] h-[497px] flex flex-col justify-center items-center">
           <div className="font-semibold text-xl">Create Account</div>
-          <form className="p-3 w-80 mt-9 rounded-md shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]">
+          <form
+            onSubmit={handleSubmit}
+            className="p-3 w-80 mt-9 rounded-md shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+          >
             {/* Name */}
             <div className="mb-4">
               <label htmlFor="email" className="text-lg font-medium block mb-2">
@@ -28,6 +56,8 @@ const Register = () => {
                 type="text"
                 id="fullName"
                 placeholder="Full Name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
                 className="bg-[#D9D9D9] border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#F80F00]"
                 required
               />
@@ -43,6 +73,8 @@ const Register = () => {
                 type="email"
                 id="email"
                 placeholder="Email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 className="bg-[#D9D9D9] border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#F80F00]"
                 required
               />
@@ -61,6 +93,8 @@ const Register = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
                 className="bg-[#D9D9D9] border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#F80F00]"
                 required
               />
@@ -88,8 +122,10 @@ const Register = () => {
               </label>
               <input
                 type={showPassword ? "text" : "password"}
-                id="password"
+                id="confirm-password"
                 placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(event) => setConfirmPassword(event.target.value)}
                 className="bg-[#D9D9D9] border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#F80F00]"
                 required
               />
@@ -110,7 +146,10 @@ const Register = () => {
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center">
                 <input type="checkbox" id="remember-me" className="mt-1 mr-1" />
-                <label htmlFor="remember-me" className="top- text-sm font-medium">
+                <label
+                  htmlFor="remember-me"
+                  className="top- text-sm font-medium"
+                >
                   Remember
                 </label>
               </div>

@@ -1,6 +1,7 @@
 import Brands from "../components/Brands";
 import Slides from "../components/Slides";
 import Tranding from "../components/Tranding";
+import DisplaySneakers from "../components/DisplaySneakers";
 
 const Home = () => {
   return (
@@ -18,9 +19,7 @@ const Home = () => {
       {/* brands end */}
 
       {/* display sneakers */}
-      <div>
-        
-      </div>
+      <DisplaySneakers />
       {/* display sneakers end */}
     </>
   );

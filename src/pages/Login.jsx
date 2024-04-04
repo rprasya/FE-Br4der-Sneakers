@@ -9,7 +9,7 @@ const Login = () => {
   return (
     <>
       <section className="flex justify-between items-center mb-10">
-        <div className="w-[700px] h-[497px] flex flex-col justify-center items-center">
+        <div className="w-[707px] flex flex-col justify-center items-center">
           <img src={Logo} alt="Logo" className="w-[165px]" />
           <p className="text-center text-base tracking-wide font-semibold mt-6">
             Kami hadir untuk menjadikan pengalaman <br /> berbelanja sepatu Anda
@@ -18,7 +18,7 @@ const Login = () => {
         </div>
         <div className="w-[700px] h-[497px] flex flex-col justify-center items-center">
           <div className="font-semibold text-xl">Enter Your Account</div>
-          <form className="p-3 w-80 mt-9 rounded-md shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]">
+          <form className="p-3 w-[496px] mt-9 rounded-md]">
             {/* email */}
             <div className="mb-4">
               <label htmlFor="email" className="text-lg font-medium block mb-2">

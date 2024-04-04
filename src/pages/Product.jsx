@@ -1,4 +1,4 @@
-import Foto from "../assets/sara-kurfess-_VfvnjbKFu4-unsplash.jpg";
+import Foto from "../assets/imgSlider/sara-kurfess-_VfvnjbKFu4-unsplash.jpg";
 import Footer from "../components/Footer";
 
 const Product = () => {

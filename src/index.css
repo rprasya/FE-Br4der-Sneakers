@@ -37,14 +37,14 @@
 
     .primary-button{
         @apply
-        py-2 rounded-lg
+        py-2 rounded-lg font-semibold
         bg-[#F80F00] hover:bg-[#950900] text-white hover:text-white
         border border-[#F80F00] hover:border-transparent 
     }
 
     .secondary-button{
         @apply
-        py-2 rounded-lg
+        py-2 rounded-lg font-semibold
         bg-transparent hover:bg-[#F80F00]
         text-[#F80F00] hover:text-white
         border border-[#F80F00] hover:border-transparent

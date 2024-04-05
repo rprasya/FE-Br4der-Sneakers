@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 const DisplaySneakers = () => {
     return (
         <>
-        <div className="flex flex-col min-h-[500px] items-center justify-center gap-16">
+        <div className="flex flex-col min-h-[500px] items-center justify-center mt-16 gap-16">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:cols-3 gap-16">
                 {/* Card */}
                     <div className="card">
@@ -328,11 +328,11 @@ const DisplaySneakers = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col items-center">
-                <div
+            <div className="flex flex-col items-center mb-16">
+                <button
                 className="secondary-button px-8">
                     Muat Lebih Banyak
-                </div>
+                </button>
             </div>
         </div>
         <Footer />

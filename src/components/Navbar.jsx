@@ -2,7 +2,6 @@ import { Routes, Route, Link } from "react-router-dom";
 import LogoHome from "../assets/Logo/Logo-Home.png";
 import { IoMdSearch, IoMdCart } from "react-icons/io";
 import Home from "../pages/Home";
-import Product from "../pages/Product";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
@@ -61,7 +60,7 @@ const Navbar = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product" element={<Product />} />
+        {/* <Route path="/product" element={<Product />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

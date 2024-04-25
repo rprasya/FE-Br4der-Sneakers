@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
+
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo/logo_3.png";
 import Footer from "../components/Footer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -10,20 +12,20 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      history.push("/src/pages/Home");
+      navigate("/src/pages/Home.jsx");
     }
-  }, [history]);
+  }, [navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch("https://br4der-api.up.railway.app/users", {
+      const response = await fetch("https://br4der-api.up.railway.app/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +36,7 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        history.push("/src/pages/Home");
+        navigate("/src/pages/Home.jsx");
       } else {
         const errorMessage = await response.text();
         setError(`Error: ${errorMessage}`);

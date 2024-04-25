@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Footer from "../components/Footer";
+import {Link} from "react-router-dom"
 
 const DisplaySneakers = () => {
   return (
@@ -286,7 +287,7 @@ const DisplaySneakers = () => {
           </div>
         </div>
         <div className="flex flex-col items-center mb-16">
-          <button className="secondary-button px-8">Muat Lebih Banyak</button>
+          <Link to="/product" className="secondary-button px-8">Muat Lebih Banyak</Link>
         </div>
       </div>
       <Footer />

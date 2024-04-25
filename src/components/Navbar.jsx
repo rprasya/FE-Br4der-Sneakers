@@ -4,6 +4,8 @@ import { IoMdSearch, IoMdCart } from "react-icons/io";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AfterLogin from "../pages/AfterLogin";
+import Product from "../pages/Product";
 
 const Navbar = () => {
   return (
@@ -60,9 +62,10 @@ const Navbar = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/product" element={<Product />} /> */}
+        <Route path="/product" element={<Product />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/afterlogin" element={<AfterLogin />} />
       </Routes>
     </>
   );

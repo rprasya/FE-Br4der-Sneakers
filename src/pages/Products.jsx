@@ -25,20 +25,27 @@ const Product = () => {
 
   return (
     <section className="text-center">
-      <div className="font-bold text-4xl mb-6">Products Page</div>
+      <div className="font-bold text-3xl my-5">All Sneakers</div>
       {loading ? (
         <i>Loading Products...</i>
       ) : (
-        <div>
-          {products.map((product) => {
-            return (
-              <div key={product.id}>
-                <h2 className="text-black hover:underline">
-                  <Link to={`/products/${product.id}`}>{product.name}</Link>
-                </h2>
-              </div>
-            );
-          })}
+        <div className="flex flex-col min-h-[500px] items-center justify-center mt-16 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-4 lg:cols-3 gap-16">
+            {products.map((product) => {
+              return (
+                <div key={product.id}>
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="w-96"
+                  />
+                  <h2 className="text-black hover:underline">
+                    <Link to={`/products/${product.id}`}>{product.name}</Link>
+                  </h2>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
     </section>

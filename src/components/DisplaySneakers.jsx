@@ -287,7 +287,7 @@ const DisplaySneakers = () => {
           </div>
         </div>
         <div className="flex flex-col items-center mb-16">
-          <Link to="/product" className="secondary-button px-8">Muat Lebih Banyak</Link>
+          <Link to="/products" className="secondary-button px-8">Muat Lebih Banyak</Link>
         </div>
       </div>
       <Footer />

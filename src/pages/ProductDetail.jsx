@@ -51,9 +51,20 @@ const ProductDetail = () => {
         <div>
           <div className="flex justify-between items-center mb-10">
             <div className="w-[707px] flex flex-col justify-center items-center">
+              <div className="flex gap-4 mt-4 mr-60">
+                <div className="w-20 text-center p-1 border border-solid border-red-600 rounded-md mt-5 hover:text-white hover:bg-red-600 hover:cursor-pointer">
+                  TAG 1
+                </div>
+                <div className="w-20 text-center p-1 border border-solid border-red-600 rounded-md mt-5 hover:text-white hover:bg-red-600 hover:cursor-pointer">
+                  TAG 2
+                </div>
+                <div className="w-20 text-center p-1 border border-solid border-red-600 rounded-md mt-5 hover:text-white hover:bg-red-600 hover:cursor-pointer">
+                  TAG 3
+                </div>
+              </div>
               <img src={product.imageUrl} alt={product.name} className="w-96" />
-              <p>{product.name}</p>
-              <p>{formatPrice(product.price)}</p>
+              <p className="font-bold text-xl mb-4">{product.name}</p>
+              <p className="font-bold text-2xl">{formatPrice(product.price)}</p>
             </div>
             <div className="w-[700px] h-[497px] flex flex-col justify-center items-center">
               <div className="text-left">

@@ -124,7 +124,10 @@ const ProductDetail = () => {
                     </button>
                   </div>
                   <div className="flex gap-4">
-                    <button className="text-red-600 px-6 border border-solid border-red-600 rounded-lg hover:text-white hover:bg-red-600">
+                    <button
+                      className="text-red-600 px-6 border border-solid border-red-600 rounded-lg hover:text-white hover:bg-red-600"
+                      onClick={() => alert("Ordering not available yet")}
+                    >
                       Add Cart
                     </button>
                     <button className="text-red-600 px-6 border border-solid border-red-600 rounded-lg hover:text-white hover:bg-red-600">

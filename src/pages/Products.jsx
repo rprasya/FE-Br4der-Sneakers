@@ -101,10 +101,6 @@ const Product = () => {
                     {/* Tag & Stock  */}
                     <div className="flex flex-col gap-3 py-3 px-5">
                       <div className="grid grid-cols-2 items-center gap-3">
-                        {/* 
-                                <div className="text-sm text-end font-semibold line-through text-gray-500">Rp500.000</div>
-                                <div className="text-xl font-semibold text-red-700">60%</div>
-                                    */}
                         <button className="tag">Adidas</button>
                         <div className="text-sm items-center text-end font-bold opacity-85">
                           120 Stock
@@ -116,42 +112,32 @@ const Product = () => {
                         <div className="price">Rp 1.360.000</div>
                         {/* Product Name */}
                         <div className="product-title">
-                          <Link className="hover:underline" to={`/products/${product.id}`}>
+                          <Link
+                            className="hover:underline"
+                            to={`/products/${product.id}`}
+                          >
                             {product.name}
                           </Link>
                         </div>
-                        {/* Tag
-                            <div className="flex items-center gap-2 mt-5">
-                                <button className="tag">
-                                    Adidas
-                                </button>
-                                <button className="tag">
-                                    Low
-                                </button>
-                            </div> */}
 
                         {/* Atc & Buy Now */}
-                        <div className="grid grid-cols-2 gap-3 mt-8 mb-5">
-                          <button className="primary-button">
-                            Beli Sekarang
-                          </button>
-                          <button className="secondary-button">
-                            Keranjang
+                        <div className="text-center grid grid-cols-2 gap-3 mt-8 mb-5">
+                          <Link
+                            className="primary-button"
+                            to={`/products/${product.id}`}
+                          >
+                            Buy Now
+                          </Link>
+                          <button
+                            className="secondary-button"
+                            onClick={() => alert("Ordering not available yet")}
+                          >
+                            Add Cart
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                  // <div key={product.id}>
-                  //   <img
-                  //     src={product.imageUrl}
-                  //     alt={product.name}
-                  //     className="w-96"
-                  //   />
-                  //   <h2 className="text-black hover:underline">
-                  //     <Link to={`/products/${product.id}`}>{product.name}</Link>
-                  //   </h2>
-                  // </div>
                 );
               })}
             </div>

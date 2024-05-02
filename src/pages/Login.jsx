@@ -1,15 +1,56 @@
+/* eslint-disable no-unused-vars */
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo/logo_3.png";
 import Footer from "../components/Footer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useEffect } from "react";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/src/pages/Home.jsx");
+    }
+  }, [navigate]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("https://br4der-api.up.railway.app/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        navigate("/src/pages/Home.jsx");
+      } else {
+        const errorMessage = await response.text();
+        setError(`Error: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error("Error", error);
+      setError("Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <>
       <section className="flex justify-between items-center mb-10">
-        <div className="w-[700px] h-[497px] flex flex-col justify-center items-center">
+        <div className="w-[707px] flex flex-col justify-center items-center">
           <img src={Logo} alt="Logo" className="w-[165px]" />
           <p className="text-center text-base tracking-wide font-semibold mt-6">
             Kami hadir untuk menjadikan pengalaman <br /> berbelanja sepatu Anda
@@ -18,7 +59,10 @@ const Login = () => {
         </div>
         <div className="w-[700px] h-[497px] flex flex-col justify-center items-center">
           <div className="font-semibold text-xl">Enter Your Account</div>
-          <form className="p-3 w-80 mt-9 rounded-md shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]">
+          <form
+            className="p-3 w-80 mt-9 rounded-md shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+            onSubmit={handleSubmit}
+          >
             {/* email */}
             <div className="mb-4">
               <label htmlFor="email" className="text-lg font-medium block mb-2">
@@ -30,6 +74,7 @@ const Login = () => {
                 placeholder="Email"
                 className="bg-[#D9D9D9] border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#F80F00]"
                 required
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             {/* email end */}
@@ -43,16 +88,21 @@ const Login = () => {
                 Password
               </label>
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Password"
                 className="bg-[#D9D9D9] border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#F80F00]"
                 required
+                onChange={(event) => setPassword(event.target.value)}
               />
-              <button type="button" className="absolute top-[66%] right-[185px] transform -translate-y-1/2 focus:outline-none" onClick={() => setShowPassword(!showPassword)}>
+              <button
+                type="button"
+                className="absolute top-[66%] right-[185px] transform -translate-y-1/2 focus:outline-none"
+                onClick={() => setShowPassword(!showPassword)}
+              >
                 {showPassword ? (
                   <FaEyeSlash className="text-xl" />
-                  ) : (
+                ) : (
                   <FaEye className="text-xl" />
                 )}
               </button>

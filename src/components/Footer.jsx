@@ -9,8 +9,8 @@ import Tiktok from "../assets/Sosmed/icon_tiktok.png";
 const Footer = () => {
   return (
     <>
-      <div className="h-72 flex justify-around items-center">
-        <div className="flex flex-col gap-6">
+      <div className="h-72 flex justify-around items-center bg-[#F0F0F0]">
+        <div className="flex flex-col text-left gap-6">
           <img src={LogoFooter} alt="Logo Footer" className="w-32" />
           <p className="font-semibold">
             Tingkatkan Gaya, Tingkatkan Percaya Diri Temukan <br /> Sepatu yang

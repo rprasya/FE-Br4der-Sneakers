@@ -2,9 +2,11 @@ import { Routes, Route, Link } from "react-router-dom";
 import LogoHome from "../assets/Logo/Logo-Home.png";
 import { IoMdSearch, IoMdCart } from "react-icons/io";
 import Home from "../pages/Home";
-import Product from "../pages/Product";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AfterLogin from "../pages/AfterLogin";
+import Products from "../pages/Products";
+import ProductDetail from "../pages/ProductDetail";
 
 const Navbar = () => {
   return (
@@ -61,9 +63,11 @@ const Navbar = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/afterlogin" element={<AfterLogin />} />
       </Routes>
     </>
   );

@@ -19,7 +19,7 @@
 
     .product-title {
         @apply
-        text-xl
+        text-base
     }
     .price {
         @apply

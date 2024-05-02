@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 const Product = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [categorys, setCategorys] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,15 +18,30 @@ const Product = () => {
         setProducts(getData);
         setLoading(false);
         console.log(getData);
+
+        const response2 = await fetch(
+          "https://br4der-api.up.railway.app/category"
+        );
+        const getCatergory = await response2.json();
+
+        setCategorys(getCatergory);
       } catch (error) {
-        console.log("error: ", error);
+        console.log("error:", error);
       }
     };
     fetchProducts();
   }, []);
 
+  const formatPrice = (price) => {
+    return price.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0, // memastikan bahwa tdk ada digit pecahan (koma) di belakang angka 0
+    });
+  };
+
   return (
-    <section className="">
+    <section>
       <div className="flex font-semibold text-lg mx-8 my-5">
         <Link to="/" className="hover:underline">
           Home
@@ -88,58 +104,64 @@ const Product = () => {
           </div>
           <div className="flex flex-col min-h-[500px] items-center justify-center mt-16 gap-16">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:cols-3 gap-16">
-              {products.map((product) => {
-                return (
-                  <div className="card" key={product.id}>
-                    {/* img */}
-                    <img
-                      className="img-card p-5"
-                      src={product.imageUrl}
-                      alt={product.name}
-                    />
+              {products.map((product) => (
+                <div className="card" key={product.id}>
+                  {/* img */}
+                  <img
+                    className="img-card p-5"
+                    src={product.imageUrl}
+                    alt={product.name}
+                  />
 
-                    {/* Tag & Stock  */}
-                    <div className="flex flex-col gap-3 py-3 px-5">
-                      <div className="grid grid-cols-2 items-center gap-3">
-                        <button className="tag">Adidas</button>
-                        <div className="text-sm items-center text-end font-bold opacity-85">
-                          120 Stock
-                        </div>
+                  {/* Tag & Stock  */}
+                  <div className="flex flex-col gap-3 py-3 px-5">
+                    <div className="grid grid-cols-2 items-center gap-3">
+                      {categorys.map((category) => {
+                        if (category.id === product.categoryId) {
+                          return (
+                            <button className="tag" key={category.id}>
+                              {category.name}
+                            </button>
+                          );
+                        }
+                      })}
+                      <div className="text-sm items-center text-end font-bold opacity-85">
+                        10 Stock
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-3 mt-3">
+                      {/* Price Name */}
+                      <div className="price">{formatPrice(product.price)}</div>
+                      {/* Product Name */}
+                      <div className="product-title">
+                        <Link
+                          className="hover:underline"
+                          to={`/products/${product.id}`}
+                        >
+                          {product.name}
+                        </Link>
                       </div>
 
-                      <div className="flex flex-col gap-3 mt-3">
-                        {/* Price Name */}
-                        <div className="price">Rp 1.360.000</div>
-                        {/* Product Name */}
-                        <div className="product-title">
-                          <Link
-                            className="hover:underline"
-                            to={`/products/${product.id}`}
-                          >
-                            {product.name}
-                          </Link>
-                        </div>
-
-                        {/* Atc & Buy Now */}
-                        <div className="text-center grid grid-cols-2 gap-3 mt-8 mb-5">
-                          <Link
-                            className="primary-button"
-                            to={`/products/${product.id}`}
-                          >
-                            Buy Now
-                          </Link>
-                          <button
-                            className="secondary-button"
-                            onClick={() => alert("Ordering not available yet")}
-                          >
-                            Add Cart
-                          </button>
-                        </div>
+                      {/* Atc & Buy Now */}
+                      <div className="text-center grid grid-cols-2 gap-3 mt-8 mb-5">
+                        <Link
+                          className="primary-button"
+                          to={`/products/${product.id}`}
+                        >
+                          Buy Now
+                        </Link>
+                        <button
+                          className="secondary-button"
+                          onClick={() => alert("Ordering not available yet")}
+                        >
+                          Add Cart
+                        </button>
                       </div>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         </div>

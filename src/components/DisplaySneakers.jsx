@@ -1,293 +1,130 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import {Link} from "react-router-dom"
+import { useEffect } from "react";
 
 const DisplaySneakers = () => {
+  const [products, setProducts] = useState([]);
+  const [categorys, setCategorys] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://br4der-api.up.railway.app/product"
+        );
+        const getData = await response.json();
+
+        // Random Urutan Data
+        const shuffledData = getData.sort(() => Math.random() - 0.5);
+
+        // Membatasi 6 Data Pertama setelah di Random
+        const limitedData = shuffledData.slice(0, 6);
+
+        setProducts(limitedData);
+
+        const response2 = await fetch(
+          "https://br4der-api.up.railway.app/category"
+        );
+        const getCatergory = await response2.json();
+
+        setCategorys(getCatergory);
+      } catch (error) {
+        console.log("error:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const formatPrice = (price) => {
+    return price.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0, // memastikan bahwa tdk ada digit pecahan (koma) di belakang angka 0
+    });
+  };
+
   return (
     <>
       <div className="flex flex-col min-h-[500px] items-center justify-center mt-16 gap-16">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:cols-3 gap-16">
-          {/* Card */}
-          <div className="card">
-            {/* img */}
-            <img
-              className="img-card p-5"
-              src="https://cdn-images.farfetch-contents.com/16/65/22/47/16652247_32587810_1000.jpg"
-              alt=""
-            />
+          {products.map((product) => (
+            <div
+              className="w-72 min-h-[10rem] bg-white text-gray-700 shadow-lg rounded-lg overflow-hidden"
+              key={product.id}
+            >
+              {/* img */}
+              <img
+                className="w-full h-48 bg-white object-cover object-bottom p-5"
+                src={product.imageUrl}
+                alt={product.name}
+              />
 
-            {/* Tag & Stock  */}
-            <div className="flex flex-col gap-3 py-3 px-5">
-              <div className="grid grid-cols-2 items-center gap-3">
-                {/* 
-                                <div className="text-sm text-end font-semibold line-through text-gray-500">Rp500.000</div>
-                                <div className="text-xl font-semibold text-red-700">60%</div>
-                                    */}
-                <button className="tag">Adidas</button>
-                <div className="text-sm items-center text-end font-bold opacity-85">
-                  120 Stock
+              {/* Tag & Stock  */}
+              <div className="flex flex-col gap-3 py-3 px-5">
+                <div className="grid grid-cols-2 items-center gap-3">
+                  {categorys.map((category) => {
+                    if (category.id === product.categoryId) {
+                      return (
+                        <button
+                          className="px-2 py-1 rounded-full text-xs font-semibold text-[#F80F00] bg-transparent border-2 border-[#F80F00] hover:bg-[#F80F00] hover:text-white"
+                          key={category.id}
+                        >
+                          {category.name}
+                        </button>
+                      );
+                    }
+                  })}
+                  <div className="text-sm items-center text-end font-bold opacity-85">
+                    10 Stock
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex flex-col gap-3 mt-3">
-                {/* Price Name */}
-                <div className="price">Rp 1.360.000</div>
-                {/* Product Name */}
-                <div className="product-title">Samba OG "White/Black"</div>
-                {/* Tag
-                            <div className="flex items-center gap-2 mt-5">
-                                <button className="tag">
-                                    Adidas
-                                </button>
-                                <button className="tag">
-                                    Low
-                                </button>
-                            </div> */}
+                <div className="flex flex-col gap-3 mt-3">
+                  {/* Price Name */}
+                  <div className="font-bold text-xl">
+                    {formatPrice(product.price)}
+                  </div>
+                  {/* Product Name */}
+                  <div className="text-base">
+                    <Link
+                      className="hover:underline"
+                      to={`/products/${product.id}`}
+                    >
+                      {product.name}
+                    </Link>
+                  </div>
 
-                {/* Atc & Buy Now */}
-                <div className="grid grid-cols-2 gap-3 mt-8 mb-5">
-                  <button className="primary-button">Beli Sekarang</button>
-                  <button className="secondary-button">Keranjang</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="card">
-            {/* img */}
-            <img
-              className="img-card p-5"
-              src="https://cdn-images.farfetch-contents.com/19/52/47/28/19524728_43509670_1000.jpg"
-              alt=""
-            />
-
-            {/* Tag & Stock  */}
-            <div className="flex flex-col gap-3 py-3 px-5">
-              <div className="grid grid-cols-2 items-center gap-3">
-                {/* 
-                                <div className="text-sm text-end font-semibold line-through text-gray-500">Rp500.000</div>
-                                <div className="text-xl font-semibold text-red-700">60%</div>
-                                    */}
-                <button className="tag">New Balance</button>
-                <div className="text-sm items-center text-end font-bold opacity-85">
-                  120 Stock
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 mt-3">
-                {/* Price Name */}
-                <div className="price">Rp 2.261.000</div>
-                {/* Product Name */}
-                <div className="product-title">530 "low-top"</div>
-                {/* Tag
-                            <div className="flex items-center gap-2 mt-5">
-                                <button className="tag">
-                                    Adidas
-                                </button>
-                                <button className="tag">
-                                    Low
-                                </button>
-                            </div> */}
-
-                {/* Atc & Buy Now */}
-                <div className="grid grid-cols-2 gap-3 mt-8 mb-5">
-                  <button className="primary-button">Beli Sekarang</button>
-                  <button className="secondary-button">Keranjang</button>
+                  {/* Atc & Buy Now */}
+                  <div className="text-center grid grid-cols-2 gap-3 mt-8 mb-5">
+                    <Link
+                      className="py-2 rounded-lg font-semibold
+                      bg-[#F80F00] hover:bg-[#950900] text-white hover:text-white
+                      border border-[#F80F00] hover:border-transparent "
+                      to={`/products/${product.id}`}
+                    >
+                      Buy Now
+                    </Link>
+                    <button
+                      className="py-2 rounded-lg font-semibold
+                      bg-transparent hover:bg-[#F80F00]
+                      text-[#F80F00] hover:text-white
+                      border border-[#F80F00] hover:border-transparent"
+                      onClick={() => alert("Ordering not available yet")}
+                    >
+                      Add Cart
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="card">
-            {/* img */}
-            <img
-              className="img-card p-5"
-              src="https://cdn-images.farfetch-contents.com/22/50/01/64/22500164_52683718_1000.jpg"
-              alt=""
-            />
-
-            {/* Tag & Stock  */}
-            <div className="flex flex-col gap-3 py-3 px-5">
-              <div className="grid grid-cols-2 items-center gap-3">
-                {/* 
-                                <div className="text-sm text-end font-semibold line-through text-gray-500">Rp500.000</div>
-                                <div className="text-xl font-semibold text-red-700">60%</div>
-                                    */}
-                <button className="tag">Asics</button>
-                <div className="text-sm items-center text-end font-bold opacity-85">
-                  120 Stock
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 mt-3">
-                {/* Price Name */}
-                <div className="price">Rp 2.893.000</div>
-                {/* Product Name */}
-                <div className="product-title">GEL-1130 "Shark Skin"</div>
-                {/* Tag
-                            <div className="flex items-center gap-2 mt-5">
-                                <button className="tag">
-                                    Adidas
-                                </button>
-                                <button className="tag">
-                                    Low
-                                </button>
-                            </div> */}
-
-                {/* Atc & Buy Now */}
-                <div className="grid grid-cols-2 gap-3 mt-8 mb-5">
-                  <button className="primary-button">Beli Sekarang</button>
-                  <button className="secondary-button">Keranjang</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Card 4*/}
-          <div className="card">
-            {/* img */}
-            <img
-              className="img-card p-5"
-              src="https://cdn-images.farfetch-contents.com/20/98/60/68/20986068_50971806_1000.jpg"
-              alt=""
-            />
-
-            {/* Tag & Stock  */}
-            <div className="flex flex-col gap-3 py-3 px-5">
-              <div className="grid grid-cols-2 items-center gap-3">
-                {/* 
-                                <div className="text-sm text-end font-semibold line-through text-gray-500">Rp500.000</div>
-                                <div className="text-xl font-semibold text-red-700">60%</div>
-                                    */}
-                <button className="tag">Puma</button>
-                <div className="text-sm items-center text-end font-bold opacity-85">
-                  120 Stock
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 mt-3">
-                {/* Price Name */}
-                <div className="price">Rp 1.186.000</div>
-                {/* Product Name */}
-                <div className="product-title">
-                  Palermo OG "Silver Sky/Cayenne Pepper/Gum"
-                </div>
-                {/* Tag
-                            <div className="flex items-center gap-2 mt-5">
-                                <button className="tag">
-                                    Adidas
-                                </button>
-                                <button className="tag">
-                                    Low
-                                </button>
-                            </div> */}
-
-                {/* Atc & Buy Now */}
-                <div className="grid grid-cols-2 gap-3 mt-8 mb-5">
-                  <button className="primary-button">Beli Sekarang</button>
-                  <button className="secondary-button">Keranjang</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 5 */}
-          <div className="card">
-            {/* img */}
-            <img
-              className="img-card p-5"
-              src="https://cdn-images.farfetch-contents.com/21/51/63/35/21516335_51452125_1000.jpg"
-              alt=""
-            />
-
-            {/* Tag & Stock  */}
-            <div className="flex flex-col gap-3 py-3 px-5">
-              <div className="grid grid-cols-2 items-center gap-3">
-                {/* 
-                                <div className="text-sm text-end font-semibold line-through text-gray-500">Rp500.000</div>
-                                <div className="text-xl font-semibold text-red-700">60%</div>
-                                    */}
-                <button className="tag">Asics</button>
-                <div className="text-sm items-center text-end font-bold opacity-85">
-                  120 Stock
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 mt-3">
-                {/* Price Name */}
-                <div className="price">Rp 3.194.000</div>
-                {/* Product Name */}
-                <div className="product-title">
-                  Gel Lyte V "Re:Collaboration"
-                </div>
-                {/* Tag
-                            <div className="flex items-center gap-2 mt-5">
-                                <button className="tag">
-                                    Adidas
-                                </button>
-                                <button className="tag">
-                                    Low
-                                </button>
-                            </div> */}
-
-                {/* Atc & Buy Now */}
-                <div className="grid grid-cols-2 gap-3 mt-8 mb-5">
-                  <button className="primary-button">Beli Sekarang</button>
-                  <button className="secondary-button">Keranjang</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Card  6 */}
-          <div className="card">
-            {/* img */}
-            <img
-              className="img-card p-5"
-              src="https://cdn-images.farfetch-contents.com/23/22/70/44/23227044_53331342_1000.jpg"
-              alt=""
-            />
-
-            {/* Tag & Stock  */}
-            <div className="flex flex-col gap-3 py-3 px-5">
-              <div className="grid grid-cols-2 items-center gap-3">
-                {/* 
-                                <div className="text-sm text-end font-semibold line-through text-gray-500">Rp500.000</div>
-                                <div className="text-xl font-semibold text-red-700">60%</div>
-                                    */}
-                <button className="tag">New Balance</button>
-                <div className="text-sm items-center text-end font-bold opacity-85">
-                  120 Stock
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 mt-3">
-                {/* Price Name */}
-                <div className="price">Rp 5.202.000</div>
-                {/* Product Name */}
-                <div className="product-title">X Kith 1906R "Black"</div>
-                {/* Tag
-                            <div className="flex items-center gap-2 mt-5">
-                                <button className="tag">
-                                    Adidas
-                                </button>
-                                <button className="tag">
-                                    Low
-                                </button>
-                            </div> */}
-
-                {/* Atc & Buy Now */}
-                <div className="grid grid-cols-2 gap-3 mt-8">
-                  <button className="primary-button">Beli Sekarang</button>
-                  <button className="secondary-button">Keranjang</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
         <div className="flex flex-col items-center mb-16">
-          <Link to="/products" className="secondary-button px-8">Muat Lebih Banyak</Link>
+          <Link to="/products" className="secondary-button px-8">
+            Muat Lebih Banyak
+          </Link>
         </div>
       </div>
       <Footer />

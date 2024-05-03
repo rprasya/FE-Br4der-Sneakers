@@ -4,11 +4,11 @@ import Footer from "../components/Footer";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [categorys, setCategorys] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
         const response = await fetch(
           "https://br4der-api.up.railway.app/product"
@@ -29,7 +29,7 @@ const Product = () => {
         console.log("error:", error);
       }
     };
-    fetchProducts();
+    fetchData();
   }, []);
 
   const formatPrice = (price) => {
@@ -105,10 +105,13 @@ const Product = () => {
           <div className="flex flex-col min-h-[500px] items-center justify-center mt-16 gap-16">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:cols-3 gap-16">
               {products.map((product) => (
-                <div className="card" key={product.id}>
+                <div
+                  className="w-72 min-h-[10rem] bg-white text-gray-700 shadow-lg rounded-lg overflow-hidden"
+                  key={product.id}
+                >
                   {/* img */}
                   <img
-                    className="img-card p-5"
+                    className="w-full h-48 bg-white object-cover object-bottom p-5"
                     src={product.imageUrl}
                     alt={product.name}
                   />
@@ -117,9 +120,13 @@ const Product = () => {
                   <div className="flex flex-col gap-3 py-3 px-5">
                     <div className="grid grid-cols-2 items-center gap-3">
                       {categorys.map((category) => {
+                        // membuat kondisi
                         if (category.id === product.categoryId) {
                           return (
-                            <button className="tag" key={category.id}>
+                            <button
+                              className="px-2 py-1 rounded-full text-xs font-semibold text-[#F80F00] bg-transparent border-2 border-[#F80F00] hover:bg-[#F80F00] hover:text-white"
+                              key={category.id}
+                            >
                               {category.name}
                             </button>
                           );
@@ -132,9 +139,11 @@ const Product = () => {
 
                     <div className="flex flex-col gap-3 mt-3">
                       {/* Price Name */}
-                      <div className="price">{formatPrice(product.price)}</div>
+                      <div className="font-bold text-xl">
+                        {formatPrice(product.price)}
+                      </div>
                       {/* Product Name */}
-                      <div className="product-title">
+                      <div className="text-base">
                         <Link
                           className="hover:underline"
                           to={`/products/${product.id}`}
@@ -146,13 +155,18 @@ const Product = () => {
                       {/* Atc & Buy Now */}
                       <div className="text-center grid grid-cols-2 gap-3 mt-8 mb-5">
                         <Link
-                          className="primary-button"
+                          className="py-2 rounded-lg font-semibold
+                          bg-[#F80F00] hover:bg-[#950900] text-white hover:text-white
+                          border border-[#F80F00] hover:border-transparent "
                           to={`/products/${product.id}`}
                         >
                           Buy Now
                         </Link>
                         <button
-                          className="secondary-button"
+                          className="py-2 rounded-lg font-semibold
+                          bg-transparent hover:bg-[#F80F00]
+                          text-[#F80F00] hover:text-white
+                          border border-[#F80F00] hover:border-transparent"
                           onClick={() => alert("Ordering not available yet")}
                         >
                           Add Cart

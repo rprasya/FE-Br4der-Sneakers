@@ -122,7 +122,7 @@ const DisplaySneakers = () => {
           ))}
         </div>
         <div className="flex flex-col items-center mb-16">
-          <Link to="/products" className="secondary-button px-8">
+          <Link to="/products" className="py-2 rounded-lg font-semibold bg-transparent hover:bg-[#F80F00] text-[#F80F00] hover:text-white border border-[#F80F00] hover:border-transparent px-8">
             Muat Lebih Banyak
           </Link>
         </div>

@@ -55,7 +55,7 @@ const Product = () => {
         <i>Loading Products...</i>
       ) : (
         <div className="flex">
-          <div className="w-72 h-80 mt-6 flex justify-center">
+          <div className="w-64 h-80 mt-6 flex justify-center">
             <div className="h-full w-48 flex flex-col text-center rounded-lg border border-solid border-red-700">
               <p className="font-semibold mt-3 mb-4">Select Brand</p>
               <ul>
@@ -111,7 +111,7 @@ const Product = () => {
                 >
                   {/* img */}
                   <img
-                    className="w-full h-48 bg-white object-cover object-bottom p-5"
+                    className="w-full h-48 bg-white object-cover object-bottom p-5 hover:scale-[110%]"
                     src={product.imageUrl}
                     alt={product.name}
                   />

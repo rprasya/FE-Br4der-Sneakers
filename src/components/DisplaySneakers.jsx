@@ -56,7 +56,7 @@ const DisplaySneakers = () => {
             >
               {/* img */}
               <img
-                className="w-full h-48 bg-white object-cover object-bottom p-5"
+                className="w-full h-48 bg-white object-cover object-bottom p-5 hover:scale-[110%]"
                 src={product.imageUrl}
                 alt={product.name}
               />

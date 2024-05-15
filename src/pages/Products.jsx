@@ -41,7 +41,7 @@ const Product = () => {
   };
 
   return (
-    <section>
+    <section className="px-4">
       <div className="flex font-semibold text-lg mx-8 my-5">
         <Link to="/" className="hover:underline">
           Home
@@ -54,8 +54,8 @@ const Product = () => {
       {loading ? (
         <i>Loading Products...</i>
       ) : (
-        <div className="flex">
-          <div className="w-64 h-80 mt-6 flex justify-center">
+        <div className="flex flex-col lg:flex-row">
+          <div className="w-full lg:w-64 lg:h-80 mt-6 flex justify-center mb-6 lg:mb-0">
             <div className="h-full w-48 flex flex-col text-center rounded-lg border border-solid border-red-700">
               <p className="font-semibold mt-3 mb-4">Select Brand</p>
               <ul>
@@ -102,16 +102,16 @@ const Product = () => {
               </ul>
             </div>
           </div>
-          <div className="flex flex-col min-h-[500px] items-center justify-center mt-16 gap-16">
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:cols-3 gap-16">
+          <div className="flex flex-col min-h-[500px] items-center justify-center mt-6 lg:mt-16 gap-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 lg:gap-16">
               {products.map((product) => (
                 <div
-                  className="w-72 min-h-[10rem] bg-white text-gray-700 shadow-lg rounded-lg overflow-hidden"
+                  className="w-full max-w-xs bg-white text-gray-700 shadow-lg rounded-lg overflow-hidden"
                   key={product.id}
                 >
                   {/* img */}
                   <img
-                    className="w-full h-48 bg-white object-cover object-bottom p-5 hover:scale-[110%]"
+                    className="w-full h-48 object-cover object-bottom p-5 hover:scale-110 transition-transform duration-300"
                     src={product.imageUrl}
                     alt={product.name}
                   />
@@ -120,7 +120,7 @@ const Product = () => {
                   <div className="flex flex-col gap-3 py-3 px-5">
                     <div className="grid grid-cols-2 items-center gap-3">
                       {categorys.map((category) => {
-                        // membuat kondisi
+                        // making condition
                         if (category.id === product.categoryId) {
                           return (
                             <button
@@ -156,17 +156,17 @@ const Product = () => {
                       <div className="text-center grid grid-cols-2 gap-3 mt-8 mb-5">
                         <Link
                           className="py-2 rounded-lg font-semibold
-                          bg-[#F80F00] hover:bg-[#950900] text-white hover:text-white
-                          border border-[#F80F00] hover:border-transparent "
+                      bg-[#F80F00] hover:bg-[#950900] text-white hover:text-white
+                      border border-[#F80F00] hover:border-transparent"
                           to={`/products/${product.id}`}
                         >
                           Buy Now
                         </Link>
                         <button
                           className="py-2 rounded-lg font-semibold
-                          bg-transparent hover:bg-[#F80F00]
-                          text-[#F80F00] hover:text-white
-                          border border-[#F80F00] hover:border-transparent"
+                      bg-transparent hover:bg-[#F80F00]
+                      text-[#F80F00] hover:text-white
+                      border border-[#F80F00] hover:border-transparent"
                           onClick={() => alert("Ordering not available yet")}
                         >
                           Add Cart

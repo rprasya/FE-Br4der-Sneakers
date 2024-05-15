@@ -49,18 +49,18 @@ const Login = () => {
 
   return (
     <>
-      <section className="flex justify-between items-center mb-10">
-        <div className="w-[707px] flex flex-col justify-center items-center">
+      <section className="flex flex-col lg:flex-row justify-between items-center mb-10 px-4 lg:px-0">
+        <div className="w-full lg:w-[707px] flex flex-col justify-center items-center mb-10 lg:mb-0">
           <img src={Logo} alt="Logo" className="w-[165px]" />
           <p className="text-center text-base tracking-wide font-semibold mt-6">
             Kami hadir untuk menjadikan pengalaman <br /> berbelanja sepatu Anda
             lebih berarti dan <br /> berkesan!
           </p>
         </div>
-        <div className="w-[700px] h-[497px] flex flex-col justify-center items-center">
-          <div className="font-semibold text-xl">Enter Your Account</div>
+        <div className="w-full lg:w-[700px] flex flex-col justify-center items-center">
+          <div className="font-semibold text-xl mt-5">Enter Your Account</div>
           <form
-            className="p-3 w-80 mt-9 rounded-md shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+            className="relative p-6 w-full lg:w-80 mt-9 rounded-md shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
             onSubmit={handleSubmit}
           >
             {/* email */}
@@ -80,32 +80,34 @@ const Login = () => {
             {/* email end */}
 
             {/* Password */}
-            <div className="mb-4">
+            <div className="mb-4 relative">
               <label
                 htmlFor="password"
                 className="text-lg font-medium block mb-2"
               >
                 Password
               </label>
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                placeholder="Password"
-                className="bg-[#D9D9D9] border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#F80F00]"
-                required
-                onChange={(event) => setPassword(event.target.value)}
-              />
-              <button
-                type="button"
-                className="absolute top-[66%] right-[185px] transform -translate-y-1/2 focus:outline-none"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <FaEyeSlash className="text-xl" />
-                ) : (
-                  <FaEye className="text-xl" />
-                )}
-              </button>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  placeholder="Password"
+                  className="bg-[#D9D9D9] border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#F80F00]"
+                  required
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-3 flex items-center focus:outline-none"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <FaEyeSlash className="text-xl" />
+                  ) : (
+                    <FaEye className="text-xl" />
+                  )}
+                </button>
+              </div>
             </div>
             {/* Password end */}
 
